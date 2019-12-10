@@ -1,0 +1,32 @@
+<section id ="post-list-item">
+  <nav class="toolbar">
+    <div class="capitalize">{{title}}</div>
+    <div class="spacer"></div>
+    <div>{{created_at | date:'dd/MM/yyyy HH:mm:ss'}}</div>
+  </nav>
+  <div
+    [ngClass]="{
+    'alert alert-danger':loveIts < 0
+    ,'alert alert-success':loveIts > 0
+    ,'':loveIts == 0
+  }"
+    role="alert">
+    <pre class="brush: js line-numbers  language-js"><code class="  language-js">{{content}}</code></pre>
+    <div style="display: flex">
+      <div class="spacer"></div>
+      <button
+        (click)="loveIt(true)"
+        class="btn btn-success"
+        style="padding:0 1rem;border: .3rem solid"
+      >Love it
+      </button>
+      <button
+        (click)="loveIt(false)"
+        class="btn btn-danger"
+        style="padding:0 1rem;border: .3rem solid"
+      >Don't love it
+      </button>
+    </div>
+  </div>
+
+</section>

@@ -1,0 +1,57 @@
+<section
+  id="post-add"
+  [ngStyle]="{
+  'display': (name_component)?'table-cell':'block'
+  ,'vertical-align':  (name_component)?'middle':'none'
+  ,'text-align':  (name_component)?'center':'left'
+  }"
+>
+  <div *ngIf="!name_component">
+    <div class="col-md-12 mb-3">
+      <label for="title">Title</label>
+      <input
+        type="text"
+        class="form-control"
+        id="title"
+        name="title"
+        placeholder="Title"
+        value=""
+        [(ngModel)]="new_post.title"
+        [ngClass]="{
+          'alert alert-danger':!title_error
+          ,'alert alert-success':title_error && new_post.title.trim()!=''
+        }"
+        role="alert"
+        required>
+    </div>
+    <div class="col-md-12 mb-3">
+      <label for="content">Post</label>
+      <textarea
+        class="form-control"
+        id="content"
+        name="content"
+        [(ngModel)]="new_post.content"
+        [ngClass]="{
+          'alert alert-danger':!content_error
+          ,'succes alert-succes':content_error && new_post.content.trim()!=''
+        }"
+        role="alert"
+      ></textarea>
+    </div>
+    <div>&nbsp;</div>
+    <button
+      class="btn btn-primary"
+      type="submit"
+      (click)="onSubmit()"
+      [disabled]="name_component"
+    >
+      <span class="glyphicon glyphicon-ok-sign"></span> Submit
+    </button>
+  </div>
+  <div *ngIf="name_component" class="container" >
+    Le post a bien été ajouté
+    <br />Vous pouvez fermer cette fenêtre
+  </div>
+
+</section>
+

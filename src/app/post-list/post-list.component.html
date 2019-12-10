@@ -1,0 +1,16 @@
+<section id ="post-list-item">
+<p *ngIf="postList.length===0">La list des posts est vide</p>
+<ul *ngIf="postList.length > 0 ">
+  <li
+    *ngFor="let postItem of postList; let i = index"
+  >
+    <app-post-list-item
+      [index]="i"
+      [title]="postItem.title"
+      [content]="postItem.content"
+      [loveIts]="postItem.loveIts"
+      [created_at]="postItem.created_at"
+    ></app-post-list-item>
+  </li>
+</ul>
+</section>
