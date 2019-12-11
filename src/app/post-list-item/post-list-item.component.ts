@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {PostsService} from '../services/posts.service';
 
 @Component({
   selector: 'app-post-list-item',
@@ -6,26 +7,39 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./post-list-item.component.scss']
 })
 export class PostListItemComponent implements OnInit {
-  @Input() title: string;
   // tslint:disable-next-line:variable-name
-  @Input() created_at: Date;
-  @Input() loveIts: number;
-  @Input() content: string;
+  public title: string;
+  public edit: boolean;
+  // tslint:disable-next-line:variable-name
+  // public created_at: Date;
+  // public loveIts: number;
+  // public content: string;
   @Input() index: number;
 
-  constructor() { }
+
+  constructor(public postsService: PostsService) {
+  }
 
   ngOnInit() {
-    console.log('created_at', this.created_at);
-  }
-  loveIt(rep) {
-    if (rep) {
-      this.loveIts++;
-    }
-    if (!rep) {
-      this.loveIts--;
-    }
-    console.log('posts', this.loveIts, '\tindex', this.index);
+    this.edit = false;
+    // const post = this.postsService.postList[this.index];
+    // this.title = post.title;
+    // this.created_at = post.created_at;
+    // this.loveIts = post.loveIts;
+    // this.content = post.content;
+    // console.log('PostListItemComponent -> index :', this.index, ' -  post :', post);
   }
 
+  loveIt(rep) {
+    this.postsService.onloveIt(this.index, rep);
+    // console.log('loveIt(', rep, ') : ', this.postsService.postList[this.index]);
+  }
+
+  deletePost() {
+    this.postsService.onDeletePost(this.index);
+  }
+
+  editePost() {
+    this.edit = !this.edit;
+  }
 }

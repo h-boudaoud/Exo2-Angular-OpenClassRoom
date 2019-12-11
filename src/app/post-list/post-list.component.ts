@@ -6,9 +6,11 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./post-list.component.scss']
 })
 export class PostListComponent implements OnInit {
-  @Input() postList: any;
+  @Input() postList: any[];
 
-  constructor() { }
+  constructor() {
+    console.log('PostListComponent ->postList :', this.postList);
+  }
 
   ngOnInit() {
   }

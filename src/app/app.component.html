@@ -1,6 +1,6 @@
 <div class="container" role="main">
   <!-- Toolbar -->
-  <nav class="navbar navbar-expand-lg" role="banner">
+  <nav class="navbar navbar-expand-lg">
     <button
       *ngIf="name_component!='add'"
       class="btn btn-primary"
@@ -16,12 +16,12 @@
       <span class="glyphicon glyphicon-list"></span> Post list
     </button>
     <button
-    *ngIf="name_component!='exo1'"
-    class="btn btn-primary"
-    (click)="change_component('exo1')"
-  >
-    <span class="glyphicon glyphicon-open-file"></span> Exo 1
-  </button>
+      *ngIf="name_component!='exo1'"
+      class="btn btn-primary"
+      (click)="change_component('exo1')"
+    >
+      <span class="glyphicon glyphicon-open-file"></span> Exo 1
+    </button>
     <div class="spacer"></div>
     <span>Créez une application de type blog</span>
     <div class="spacer"></div>
@@ -58,9 +58,7 @@
           <span class="glyphicon glyphicon-remove"></span> Exit
         </button>
       </div>
-      <app-post-add
-        [postList]="postList"
-      ></app-post-add>
+      <app-post-add [index]="-1"></app-post-add>
     </div>
 
     <app-post-list
@@ -68,34 +66,31 @@
       [postList]="postList"
     ></app-post-list>
 
-
-
-
   </section>
 
   <!-- Footer -->
   <footer class="align-content-center">
     <div>Ma 1ère application</div>
     <div class="spacer"></div>
-    <label>Environnement :</label>
-    <select class="form-control" style="font-size: 80%;width: 30%">
-      <option disabled selected> Angular CLI: 8.3.19
-        Node: 12.5.0
-      </option>
-      <option>@angular-devkit/architect -- 0.803.19</option>
-      <option>@angular-devkit/build-angular -- 0.803.19</option>
-      <option>angular-devkit/build-optimizer -- 0.803.19</option>
-      <option>@angular-devkit/build-webpack -- 0.803.19</option>
-      <option>@angular-devkit/core -- 8.3.19</option>
-      <option>@angular-devkit/schematics -- 8.3.19</option>
-      <option>@angular/cli -- 8.3.19</option>
-      <option>@ngtools/webpack -- 8.3.19v</option>
-      <option>@schematics/angular -- 8.3.19</option>
-      <option>@schematics/update -- 0.803.19</option>
-      <option>rxjs -- 6.4.0</option>
-      <option>typescript -- 3.5.3</option>
-      <option>webpack -- 4.39.2</option>
-    </select>
+    <label>Environnement : </label>
+      <select class="form-control" style="font-size: 80%;width: 30%">
+        <option disabled selected> Angular CLI: 8.3.19
+          Node: 12.5.0
+        </option>
+        <option>@angular-devkit/architect -- 0.803.19</option>
+        <option>@angular-devkit/build-angular -- 0.803.19</option>
+        <option>angular-devkit/build-optimizer -- 0.803.19</option>
+        <option>@angular-devkit/build-webpack -- 0.803.19</option>
+        <option>@angular-devkit/core -- 8.3.19</option>
+        <option>@angular-devkit/schematics -- 8.3.19</option>
+        <option>@angular/cli -- 8.3.19</option>
+        <option>@ngtools/webpack -- 8.3.19v</option>
+        <option>@schematics/angular -- 8.3.19</option>
+        <option>@schematics/update -- 0.803.19</option>
+        <option>rxjs -- 6.4.0</option>
+        <option>typescript -- 3.5.3</option>
+        <option>webpack -- 4.39.2</option>
+      </select>
     <div class="spacer"></div>
     <img
       width="40"

@@ -14,14 +14,14 @@
   flex: 1;
 }
 
-section{
+#post-list-item{
   margin: .5rem auto ;
   padding: .5rem;
   width: 70vw;
   max-width: 80% !important;
   border: .1rem dashed #333333;
 }
-section>div , section>div>div{
+#post-list-item> section> div , #post-list-item> section> div> div{
   padding: 1rem !important;
   margin: 0 !important;
   width: 100% !important;

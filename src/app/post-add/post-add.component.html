@@ -1,12 +1,12 @@
 <section
   id="post-add"
   [ngStyle]="{
-  'display': (name_component)?'table-cell':'block'
-  ,'vertical-align':  (name_component)?'middle':'none'
-  ,'text-align':  (name_component)?'center':'left'
+  'display': (active_submit) ? 'table-cell' : 'block'
+  ,'vertical-align':  (active_submit) ? 'middle' : 'none'
+  ,'text-align':  (active_submit) ? 'center' : 'left'
   }"
 >
-  <div *ngIf="!name_component">
+  <div *ngIf="!active_submit">
     <div class="col-md-12 mb-3">
       <label for="title">Title</label>
       <input
@@ -43,13 +43,13 @@
       class="btn btn-primary"
       type="submit"
       (click)="onSubmit()"
-      [disabled]="name_component"
+      [disabled]="active_submit"
     >
       <span class="glyphicon glyphicon-ok-sign"></span> Submit
     </button>
   </div>
-  <div *ngIf="name_component" class="container" >
-    Le post a bien été ajouté
+  <div *ngIf="active_submit" class="container" >
+    Le post a bien été {{(index) ? 'modifié':'ajouté'}}
     <br />Vous pouvez fermer cette fenêtre
   </div>
 

@@ -5,7 +5,10 @@ import { AppComponent } from './app.component';
 import { PostListComponent } from './post-list/post-list.component';
 import { PostListItemComponent } from './post-list-item/post-list-item.component';
 import { PostAddComponent } from './post-add/post-add.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule} from '@angular/forms';
+
+
+import { PostsService } from './services/posts.service';
 
 @NgModule({
   declarations: [
@@ -16,9 +19,11 @@ import {FormsModule} from "@angular/forms";
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
   ],
-  providers: [],
+  providers: [
+    PostsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,18 +1,25 @@
-<section id ="post-list-item">
+<section id="post-list-item">
+  <section *ngIf="!edit">
   <nav class="toolbar">
-    <div class="capitalize">{{title}}</div>
+    <div class="capitalize">{{postsService.postList[index].title}}</div>
+
     <div class="spacer"></div>
-    <div>{{created_at | date:'dd/MM/yyyy HH:mm:ss'}}</div>
+    <div>{{postsService.postList[index].created_at | date:'dd/MM/yyyy HH:mm:ss'}}</div>
   </nav>
   <div
     [ngClass]="{
-    'alert alert-danger':loveIts < 0
-    ,'alert alert-success':loveIts > 0
-    ,'':loveIts == 0
+    'alert alert-danger':postsService.postList[index].loveIts < 0
+    ,'alert alert-success':postsService.postList[index].loveIts > 0
+    ,'':postsService.postList[index].loveIts == 0
   }"
     role="alert">
-    <pre class="brush: js line-numbers  language-js"><code class="  language-js">{{content}}</code></pre>
+    <pre class="brush: js line-numbers  language-js"><code class="  language-js">{{postsService.postList[index].content}}
+    </code></pre>
     <div style="display: flex">
+      <div *ngIf="postsService.postList[index].last_update" style="font-size: .85rem;">
+        Dernière mise à jour :
+        {{postsService.postList[index].last_update | date:'dd/MM/yyyy HH:mm:ss'}}
+      </div>
       <div class="spacer"></div>
       <button
         (click)="loveIt(true)"
@@ -27,6 +34,33 @@
       >Don't love it
       </button>
     </div>
+    <div style="display: flex;">
+      <button
+        (click)="deletePost()"
+        class="btn btn-danger"
+        style="padding:0 1rem;border: .3rem solid"
+      ><span class="glyphicon glyphicon-trash"></span> Delete
+      </button>
+      <button
+        (click)="editePost()"
+        class="btn btn-primary"
+        style="padding:0 1rem;border: .3rem solid"
+      ><span class="glyphicon glyphicon-edit"></span> Edit
+      </button>
+    </div>
   </div>
+  </section>
+  <section *ngIf="edit" class="backdrop"
+  >
+    <div style="display: flex;">
+      <div class="spacer"></div>
+      <div>Ajouter un nouveau post</div>
+      <div class="spacer"></div>
+      <button (click)="editePost()" style="color: red;">
+        <span class="glyphicon glyphicon-remove"></span> Exit
+      </button>
+    </div>
+    <app-post-add [index]="index"></app-post-add>
+  </section>
 
 </section>
