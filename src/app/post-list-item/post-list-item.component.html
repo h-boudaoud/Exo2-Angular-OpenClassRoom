@@ -25,13 +25,15 @@
         (click)="loveIt(true)"
         class="btn btn-success"
         style="padding:0 1rem;border: .3rem solid"
-      >Love it
+        title="I love it"
+      ><span class="glyphicon glyphicon-thumbs-up"></span>
       </button>
       <button
         (click)="loveIt(false)"
         class="btn btn-danger"
+        title="I don't love it"
         style="padding:0 1rem;border: .3rem solid"
-      >Don't love it
+      ><span class="glyphicon glyphicon-thumbs-down"></span>
       </button>
     </div>
     <div style="display: flex;">
@@ -39,14 +41,23 @@
         (click)="deletePost()"
         class="btn btn-danger"
         style="padding:0 1rem;border: .3rem solid"
-      ><span class="glyphicon glyphicon-trash"></span> Delete
+        title="Delete"
+      ><span class="glyphicon glyphicon-trash"></span>
       </button>
       <button
-        (click)="editePost()"
+        [routerLink]="'/edit/'+index"
         class="btn btn-primary"
         style="padding:0 1rem;border: .3rem solid"
-      ><span class="glyphicon glyphicon-edit"></span> Edit
+        title="Edit"
+      ><span class="glyphicon glyphicon-edit"></span>
       </button>
+<!--      <button-->
+<!--        (click)="editePost()"-->
+<!--        class="btn btn-primary"-->
+<!--        style="padding:0 1rem;border: .3rem solid"-->
+<!--        title="Edit"-->
+<!--      ><span class="glyphicon glyphicon-edit"></span>-->
+<!--      </button>-->
     </div>
   </div>
   </section>

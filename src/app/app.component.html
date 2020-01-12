@@ -9,18 +9,19 @@
       <span class="glyphicon glyphicon-plus-sign"></span> Add post
     </button>
     <button
-      *ngIf="name_component!='list'"
+      *ngIf="name_component!='posts'"
       class="btn btn-primary"
-      (click)="change_component('list')"
+      (click)="change_component('posts')"
     >
       <span class="glyphicon glyphicon-list"></span> Post list
     </button>
     <button
-      *ngIf="name_component!='exo1'"
+      *ngIf="name_component!='exercice'"
       class="btn btn-primary"
-      (click)="change_component('exo1')"
+      (click)="change_component('exercice')"
+      routerLink="exercice"
     >
-      <span class="glyphicon glyphicon-open-file"></span> Exo 1
+      <span class="glyphicon glyphicon-open-file"></span> exercice
     </button>
     <div class="spacer"></div>
     <span>Créez une application de type blog</span>
@@ -35,38 +36,11 @@
   </nav>
 
   <section>
-    <h3 class="capitalize">{{pageTitle[name_component]}}</h3>
-
-    <object
-      *ngIf="name_component=='exo1'"
-      data='assets/doc/Exo1.pdf'
-      width="100%" height="100%"
-      type='application/pdf'
-    >
-      <p>Sorry, the PDF couldn't be displayed :(</p>
-      <a href='assets/doc/Exo1.pdf' target="_blank">Click Here</a>
-    </object>
-
-    <div
-      *ngIf="name_component=='add'" class="backdrop"
-    >
-      <div style="display: flex;">
-        <div class="spacer"></div>
-        <div>Ajouter un nouveau post</div>
-        <div class="spacer"></div>
-        <button (click)="onClose()" style="color: red;">
-          <span class="glyphicon glyphicon-remove"></span> Exit
-        </button>
-      </div>
-      <app-post-add [index]="-1"></app-post-add>
-    </div>
-
-    <app-post-list
-      *ngIf="name_component=='list'"
-      [postList]="postList"
-    ></app-post-list>
+    <h3 class="capitalize">{{pageTitle}}</h3>
+    <router-outlet></router-outlet>
 
   </section>
+
 
   <!-- Footer -->
   <footer class="align-content-center">

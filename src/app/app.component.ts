@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
 import {PostsService} from './services/posts.service';
+import {ActivatedRoute, NavigationEnd, NavigationStart, Router} from '@angular/router';
+import {TitleService} from './services/title.service';
 
 @Component({
   selector: 'app-root',
@@ -30,24 +32,39 @@ export class AppComponent {
   //     created_at: new Date('2019-11-22 11:05:17')
   //   },
   // ];
-  public pageTitle = {
-    add: 'ajouter un nouveau post'
-    , list: 'la list des posts'
-  };
+  public pageTitle: string;
 
   // tslint:disable-next-line:variable-name no-shadowed-variable
-  constructor(public postsService: PostsService) {
+  constructor(
+    public postsService: PostsService,
+    private titleService: TitleService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
     this.postList = this.postsService.postList;
     console.log('AppComponent -> posts :', this.postList.length, '\n', this.postList);
-    this.name_component = (this.postList.length > 0) ? 'list' : 'add';
+    this.name_component = (this.postList.length > 0) ? 'posts' : 'add';
+    this.routeEvent(this.route);
   }
 
   change_component(component: string) {
-    this.name_component = component;
+    this.router.navigate([component]).then(r => true );
+    /*
+     console.log('route : ', this.route);
+    */
   }
 
-  onClose() {
-    this.name_component = 'list';
+  routeEvent(route: ActivatedRoute) {
+    let urlParams = null;
+    this.router.events.subscribe(e => {
+      if (e instanceof NavigationEnd && e.url !== '/') {
+        urlParams = e.url.split('/');
+        urlParams.shift();
+        console.log('this.route NavigationEnd url: ', urlParams[0]);
+        this.name_component = urlParams.shift();
+        console.log('this.route NavigationEnd e: ', e);
+      }
+      this.pageTitle = this.titleService.pageTitle(this.name_component, urlParams);
+    });
   }
-
 }

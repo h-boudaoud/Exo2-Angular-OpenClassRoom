@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {PostsService} from '../services/posts.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-post-add',
@@ -17,13 +18,17 @@ export class PostAddComponent implements OnInit {
   public new_post: { created_at: Date, last_update: Date; title: string; content: string; loveIts: number };
   @Input() index: number;
 
-  constructor(private postsService: PostsService) {
+  constructor(
+    private postsService: PostsService,
+    private route: ActivatedRoute
+  ) {
     console.log('postList constructor : ', this.postsService);
     console.log('this.postList.onLengthPostList() constructor : ', this.postsService.onLengthPostList());
   }
 
   ngOnInit() {
     this.active_submit = false;
+    this.index = (this.route.snapshot.params.id) ? this.route.snapshot.params.id : this.index;
 
     if (this.index > -1) {
       this.new_post = this.postsService.postList[this.index];
